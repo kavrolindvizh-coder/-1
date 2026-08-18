@@ -1,1515 +1,1475 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>KAVROLIN DVIZH</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<style>
-*{box-sizing:border-box}
+    <title>KAVROLIN — официальный сайт</title>
 
-body{
-    margin:0;
-    font-family:Arial,Helvetica,sans-serif;
-    background:#08080b;
-    color:#fff;
-}
+    <meta name="description"
+          content="KAVROLIN — Twitch, TikTok, Telegram, донаты и весь движ в одном месте.">
 
-header{
-    height:70px;
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    padding:0 30px;
-    border-bottom:1px solid #24242c;
-    background:#0d0d11;
-    position:sticky;
-    top:0;
-    z-index:10;
-}
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
 
-.logo{
-    font-size:22px;
-    font-weight:900;
-    letter-spacing:2px;
-}
+        html {
+            scroll-behavior: smooth;
+        }
 
-.logo span{
-    color:#9b6cff;
-}
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background:
+                radial-gradient(circle at 50% 0%, rgba(130, 25, 25, .35), transparent 35%),
+                #120706;
+            color: #f7ead2;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
 
-.carpet{
-    width:45px;
-    height:45px;
-    border:1px solid #383844;
-    border-radius:12px;
-    background:#17151d;
-    color:#fff;
-    font-size:23px;
-    cursor:pointer;
-}
+        /* КОВЁР */
 
-.carpet:hover{
-    border-color:#9b6cff;
-}
+        body::before {
+            content: "";
+            position: fixed;
+            inset: 0;
+            z-index: -2;
 
-.container{
-    width:min(1100px,92%);
-    margin:auto;
-}
+            background:
+                repeating-radial-gradient(
+                    ellipse at center,
+                    transparent 0 25px,
+                    rgba(150, 70, 25, .18) 26px 28px
+                ),
+                repeating-linear-gradient(
+                    45deg,
+                    #32100d 0 12px,
+                    #501813 12px 24px,
+                    #24100d 24px 36px
+                );
 
-.hero{
-    text-align:center;
-    padding:90px 20px 70px;
-}
+            opacity: .8;
+        }
 
-.hero h1{
-    font-size:clamp(45px,8vw,85px);
-    line-height:.9;
-    margin:20px 0;
-}
+        body::after {
+            content: "";
+            position: fixed;
+            inset: 0;
+            z-index: -1;
+            pointer-events: none;
 
-.hero h1 span{
-    color:#9b6cff;
-}
+            background:
+                radial-gradient(
+                    circle at center,
+                    transparent 20%,
+                    rgba(0,0,0,.75) 100%
+                );
+        }
 
-.hero p{
-    color:#aaaab4;
-    font-size:18px;
-    max-width:650px;
-    margin:auto;
-    line-height:1.6;
-}
+        /* НАВИГАЦИЯ */
 
-.buttons{
-    display:flex;
-    justify-content:center;
-    gap:12px;
-    flex-wrap:wrap;
-    margin-top:30px;
-}
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
 
-.btn{
-    display:inline-flex;
-    align-items:center;
-    justify-content:center;
-    min-width:150px;
-    height:48px;
-    padding:0 20px;
-    border-radius:12px;
-    border:1px solid #33333d;
-    background:#17171d;
-    color:#fff;
-    text-decoration:none;
-    font-weight:bold;
-    cursor:pointer;
-}
+            height: 70px;
 
-.btn:hover{
-    transform:translateY(-2px);
-    border-color:#9b6cff;
-}
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
 
-.btn.primary{
-    background:#7c4dff;
-    border-color:#7c4dff;
-}
+            padding: 0 6%;
 
-section{
-    padding:50px 0;
-}
+            background: rgba(15, 5, 4, .85);
+            backdrop-filter: blur(12px);
 
-.title{
-    text-align:center;
-    margin-bottom:30px;
-}
+            border-bottom: 1px solid rgba(255, 205, 120, .25);
 
-.title h2{
-    font-size:32px;
-    margin:0 0 10px;
-}
+            z-index: 1000;
+        }
 
-.title p{
-    color:#9999a3;
-}
+        .logo {
+            font-size: 25px;
+            font-weight: 900;
+            letter-spacing: 3px;
+            color: #f0c77a;
 
-.schedule{
-    display:grid;
-    grid-template-columns:repeat(3,1fr);
-    gap:15px;
-}
+            text-shadow:
+                2px 2px 0 #54130f,
+                0 0 15px rgba(240, 199, 122, .25);
+        }
 
-.stream{
-    background:#121217;
-    border:1px solid #292932;
-    border-radius:17px;
-    padding:24px;
-}
+        nav a {
+            color: #f7ead2;
+            text-decoration: none;
+            margin-left: 25px;
+            font-size: 14px;
+            font-weight: bold;
+            transition: .25s;
+        }
 
-.stream-day{
-    color:#a78bfa;
-    font-weight:bold;
-    font-size:14px;
-}
+        nav a:hover {
+            color: #e8ad4e;
+        }
 
-.stream-time{
-    font-size:34px;
-    font-weight:900;
-    margin:10px 0;
-}
+        /* HERO */
 
-.stream-title{
-    color:#bbb;
-}
+        .hero {
+            min-height: 100vh;
 
-.links{
-    display:grid;
-    grid-template-columns:repeat(3,1fr);
-    gap:15px;
-}
+            display: flex;
+            align-items: center;
+            justify-content: center;
 
-.link{
-    display:block;
-    text-align:center;
-    background:#121217;
-    border:1px solid #292932;
-    border-radius:17px;
-    padding:30px;
-    text-decoration:none;
-    color:#fff;
-}
+            text-align: center;
 
-.link:hover{
-    border-color:#9b6cff;
-    transform:translateY(-3px);
-}
+            padding: 120px 20px 80px;
+        }
 
-.link-icon{
-    font-size:35px;
-}
+        .hero-content {
+            max-width: 900px;
+        }
 
-.link h3{
-    margin:10px 0;
-}
+        .tag {
+            display: inline-block;
 
-.link p{
-    color:#9999a3;
-}
+            padding: 8px 16px;
+            margin-bottom: 20px;
 
-footer{
-    text-align:center;
-    color:#666;
-    padding:50px 20px;
-}
+            border: 1px solid #a66b35;
+            border-radius: 100px;
 
-/* MODAL */
+            color: #e8c486;
+            background: rgba(60, 15, 10, .7);
 
-.modal{
-    display:none;
-    position:fixed;
-    inset:0;
-    background:rgba(0,0,0,.8);
-    backdrop-filter:blur(8px);
-    z-index:100;
-    align-items:center;
-    justify-content:center;
-    padding:20px;
-}
+            font-size: 12px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
 
-.modal.active{
-    display:flex;
-}
+        h1 {
+            font-size: clamp(55px, 11vw, 130px);
+            line-height: .9;
 
-.modal-box{
-    width:min(750px,100%);
-    max-height:90vh;
-    overflow:auto;
-    background:#111116;
-    border:1px solid #363640;
-    border-radius:20px;
-    padding:25px;
-}
+            font-weight: 1000;
+            letter-spacing: -5px;
 
-.modal-small{
-    width:min(420px,100%);
-}
+            color: #eac17a;
 
-.modal-head{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-}
+            text-shadow:
+                5px 5px 0 #53120f,
+                9px 9px 0 rgba(0,0,0,.5);
 
-.modal-head h2{
-    margin:0;
-}
+            margin-bottom: 25px;
+        }
 
-.close{
-    width:40px;
-    height:40px;
-    border-radius:10px;
-    border:1px solid #33333d;
-    background:#19191f;
-    color:#fff;
-    font-size:22px;
-    cursor:pointer;
-}
+        .hero p {
+            max-width: 650px;
+            margin: auto;
 
-.field{
-    margin:15px 0;
-}
+            font-size: 18px;
+            line-height: 1.7;
 
-.field label{
-    display:block;
-    margin-bottom:7px;
-    color:#bbb;
-    font-size:14px;
-}
+            color: #e2cdb0;
+        }
 
-.field input{
-    width:100%;
-    height:45px;
-    border-radius:10px;
-    border:1px solid #33333d;
-    background:#09090c;
-    color:#fff;
-    padding:0 13px;
-    outline:none;
-}
+        .hero-buttons {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 14px;
 
-.field input:focus{
-    border-color:#9b6cff;
-}
+            margin-top: 35px;
+        }
 
-.admin-row{
-    display:grid;
-    grid-template-columns:1fr 120px 1.3fr 90px;
-    gap:8px;
-    margin-bottom:10px;
-}
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
 
-.admin-row input{
-    width:100%;
-    height:42px;
-    border-radius:9px;
-    border:1px solid #33333d;
-    background:#09090c;
-    color:#fff;
-    padding:0 10px;
-}
+            min-width: 170px;
 
-.delete{
-    border:1px solid #632830;
-    background:#291417;
-    color:#ff9da5;
-    border-radius:9px;
-    cursor:pointer;
-}
+            padding: 15px 25px;
 
-.admin-buttons{
-    display:flex;
-    flex-wrap:wrap;
-    gap:10px;
-    margin-top:20px;
-}
+            border-radius: 8px;
 
-.message{
-    padding:12px;
-    border-radius:10px;
-    margin:15px 0;
-    display:none;
-}
+            color: #fff4dd;
+            text-decoration: none;
 
-.message.show{
-    display:block;
-}
+            font-weight: 800;
+            letter-spacing: .5px;
 
-.error{
-    background:#35151a;
-    color:#ffb4bb;
-}
+            background: linear-gradient(
+                135deg,
+                #7e2119,
+                #47100e
+            );
 
-.success{
-    background:#12331e;
-    color:#9af0b3;
-}
+            border: 1px solid #a96635;
 
-@media(max-width:750px){
+            box-shadow:
+                0 8px 25px rgba(0,0,0,.35),
+                inset 0 0 20px rgba(255,180,80,.05);
 
-    .schedule,
-    .links{
-        grid-template-columns:1fr;
-    }
+            transition: .25s;
+        }
 
-    .admin-row{
-        grid-template-columns:1fr 1fr;
-    }
+        .btn:hover {
+            transform: translateY(-4px);
+            box-shadow:
+                0 14px 30px rgba(0,0,0,.5),
+                0 0 20px rgba(211,145,60,.2);
+        }
 
-    .admin-row input:nth-child(3){
-        grid-column:1/-1;
-    }
+        .btn-gold {
+            color: #32100b;
+            background: linear-gradient(
+                135deg,
+                #f1cb82,
+                #bd7a30
+            );
+        }
 
-    .delete{
-        grid-column:1/-1;
-        height:40px;
-    }
-}
-</style>
+        /* ОБЩЕЕ */
+
+        section {
+            padding: 90px 7%;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .section-title span {
+            color: #c58b47;
+            font-size: 13px;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+        }
+
+        .section-title h2 {
+            margin-top: 10px;
+
+            font-size: clamp(32px, 5vw, 55px);
+
+            color: #f1d09a;
+
+            text-shadow: 3px 3px 0 #42100c;
+        }
+
+        /* СОЦСЕТИ */
+
+        .social-grid {
+            max-width: 1100px;
+            margin: auto;
+
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 18px;
+        }
+
+        .social {
+            position: relative;
+
+            padding: 30px 20px;
+
+            text-align: center;
+
+            background: rgba(32, 9, 7, .88);
+
+            border: 1px solid rgba(220, 169, 91, .35);
+            border-radius: 12px;
+
+            text-decoration: none;
+            color: #f6e7cb;
+
+            overflow: hidden;
+
+            transition: .3s;
+        }
+
+        .social::before {
+            content: "";
+
+            position: absolute;
+            inset: 0;
+
+            background:
+                radial-gradient(
+                    circle at 50% 0%,
+                    rgba(222, 159, 74, .15),
+                    transparent 65%
+                );
+
+            opacity: 0;
+            transition: .3s;
+        }
+
+        .social:hover {
+            transform: translateY(-8px);
+            border-color: #d59b4c;
+        }
+
+        .social:hover::before {
+            opacity: 1;
+        }
+
+        .social-icon {
+            position: relative;
+
+            font-size: 38px;
+            margin-bottom: 15px;
+        }
+
+        .social h3 {
+            position: relative;
+
+            font-size: 20px;
+            margin-bottom: 7px;
+        }
+
+        .social p {
+            position: relative;
+
+            font-size: 13px;
+            color: #bca98f;
+        }
+
+        /* РАСПИСАНИЕ */
+
+        .schedule {
+            max-width: 850px;
+            margin: auto;
+
+            display: grid;
+            gap: 12px;
+        }
+
+        .day {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            padding: 20px 25px;
+
+            background: rgba(31, 8, 6, .9);
+
+            border-left: 4px solid #a75c28;
+            border-radius: 7px;
+
+            transition: .2s;
+        }
+
+        .day:hover {
+            transform: translateX(5px);
+            border-left-color: #e4b566;
+        }
+
+        .day strong {
+            color: #f1d09a;
+        }
+
+        .day span {
+            color: #c09b68;
+            font-weight: bold;
+        }
+
+        /* КОНТЕНТ */
+
+        .cards {
+            max-width: 1100px;
+            margin: auto;
+
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .card {
+            padding: 30px;
+
+            background: rgba(31, 8, 6, .9);
+
+            border: 1px solid rgba(214, 157, 78, .3);
+            border-radius: 12px;
+        }
+
+        .card h3 {
+            margin-bottom: 15px;
+            color: #e9bd78;
+        }
+
+        .card p {
+            line-height: 1.7;
+            color: #c9b69a;
+            font-size: 14px;
+        }
+
+        /* DONATE */
+
+        .donate {
+            max-width: 900px;
+            margin: auto;
+
+            text-align: center;
+
+            padding: 60px 30px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    rgba(93, 24, 17, .95),
+                    rgba(35, 8, 6, .95)
+                );
+
+            border: 1px solid #a96836;
+            border-radius: 15px;
+
+            box-shadow: 0 20px 60px rgba(0,0,0,.45);
+        }
+
+        .donate h2 {
+            font-size: 40px;
+            color: #f3d194;
+            margin-bottom: 15px;
+        }
+
+        .donate p {
+            color: #d6c1a3;
+            margin-bottom: 25px;
+        }
+
+        /* FOOTER */
+
+        footer {
+            padding: 45px 20px;
+
+            text-align: center;
+
+            border-top: 1px solid rgba(220, 170, 90, .2);
+
+            color: #8e7962;
+            font-size: 13px;
+        }
+
+        footer b {
+            color: #c79a58;
+        }
+
+        /* АНИМАЦИЯ */
+
+        .fade {
+            animation: fadeUp 1s ease both;
+        }
+
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(25px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* МОБИЛЬНЫЙ */
+
+        @media (max-width: 850px) {
+
+            nav {
+                padding: 0 20px;
+            }
+
+            nav .links {
+                display: none;
+            }
+
+            .social-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .cards {
+                grid-template-columns: 1fr;
+            }
+
+            h1 {
+                letter-spacing: -3px;
+            }
+        }
+
+        @media (max-width: 520px) {
+
+            section {
+                padding: 70px 20px;
+            }
+
+            .social-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+            }
+
+            .btn {
+                width: 100%;
+            }
+
+            .day {
+                padding: 17px;
+                font-size: 14px;
+            }
+        }
+
+        /* =========================
+           АДМИНКА — ДОБАВЛЕНА БЕЗ ИЗМЕНЕНИЯ ОСНОВНОГО ДИЗАЙНА
+        ========================== */
+        .admin-carpet {
+            margin-left: 20px;
+            padding: 7px 11px;
+            border: 1px solid #a66b35;
+            border-radius: 8px;
+            background: linear-gradient(135deg, #7e2119, #47100e);
+            color: #f7ead2;
+            cursor: pointer;
+            font-size: 18px;
+            line-height: 1;
+            transition: .25s;
+        }
+        .admin-carpet:hover {
+            transform: translateY(-2px);
+            border-color: #e4b566;
+            box-shadow: 0 0 15px rgba(211,145,60,.2);
+        }
+        .admin-modal {
+            display: none;
+            position: fixed;
+            inset: 0;
+            z-index: 5000;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            background: rgba(0,0,0,.78);
+            backdrop-filter: blur(8px);
+        }
+        .admin-modal.active { display: flex; }
+        .admin-box {
+            width: min(760px, 100%);
+            max-height: 90vh;
+            overflow-y: auto;
+            padding: 30px;
+            border: 1px solid #a96836;
+            border-radius: 15px;
+            background: linear-gradient(135deg, rgba(93,24,17,.98), rgba(20,5,4,.98));
+            box-shadow: 0 20px 60px rgba(0,0,0,.65);
+            color: #f7ead2;
+        }
+        .admin-box h2 { color:#f3d194; margin-bottom:8px; }
+        .admin-box h3 { color:#e9bd78; margin:25px 0 12px; }
+        .admin-box p { color:#c9b69a; }
+        .admin-head {
+            display:flex;
+            align-items:center;
+            justify-content:space-between;
+            gap:15px;
+        }
+        .admin-close {
+            border:1px solid #a96836;
+            border-radius:8px;
+            background:#47100e;
+            color:#f7ead2;
+            width:40px;
+            height:40px;
+            cursor:pointer;
+            font-size:22px;
+        }
+        .admin-field { margin:14px 0; }
+        .admin-field label {
+            display:block;
+            margin-bottom:7px;
+            color:#e2cdb0;
+            font-size:13px;
+            font-weight:bold;
+        }
+        .admin-field input {
+            width:100%;
+            height:44px;
+            padding:0 12px;
+            border:1px solid #8c5a31;
+            border-radius:8px;
+            background:#1b0806;
+            color:#f7ead2;
+            outline:none;
+        }
+        .admin-field input:focus { border-color:#e4b566; }
+        .admin-actions {
+            display:flex;
+            flex-wrap:wrap;
+            gap:10px;
+            margin-top:20px;
+        }
+        .admin-stream-row {
+            display:grid;
+            grid-template-columns:1.1fr .8fr 1.4fr 90px;
+            gap:8px;
+            margin-bottom:10px;
+        }
+        .admin-stream-row input {
+            width:100%;
+            height:42px;
+            padding:0 10px;
+            border:1px solid #8c5a31;
+            border-radius:7px;
+            background:#1b0806;
+            color:#f7ead2;
+            outline:none;
+        }
+        .admin-delete {
+            border:1px solid #7d2c22;
+            border-radius:7px;
+            background:#3a100d;
+            color:#f3b5a8;
+            cursor:pointer;
+        }
+        .admin-message {
+            display:none;
+            padding:12px;
+            margin:12px 0;
+            border-radius:8px;
+        }
+        .admin-message.show { display:block; }
+        .admin-message.error {
+            background:#3b1110;
+            border:1px solid #8b3028;
+            color:#ffc2b8;
+        }
+        .admin-message.success {
+            background:#12321d;
+            border:1px solid #39784a;
+            color:#b8f0c3;
+        }
+        @media (max-width:850px) {
+            .admin-carpet { margin-left:10px; }
+        }
+        @media (max-width:520px) {
+            .admin-stream-row { grid-template-columns:1fr 1fr; }
+            .admin-stream-row input:nth-child(3) { grid-column:1/-1; }
+            .admin-delete { grid-column:1/-1; height:40px; }
+        }
+
+    </style>
 </head>
 
 <body>
 
-<header>
-    <div class="logo">
-        KAVROLIN <span>DVIZH</span>
-    </div>
+    <!-- НАВИГАЦИЯ -->
 
-    <!-- КОВЁР — ВХОД В АДМИНКУ -->
-    <button class="carpet" id="adminOpen">🧶</button>
-</header>
+    <nav>
+        <div class="logo">KAVROLIN</div>
 
-<div class="container">
-
-<section class="hero">
-
-    <h1>
-        KAVROLIN<br>
-        <span>DVIZH</span>
-    </h1>
-
-    <p>
-        Официальная страница стримера.
-        Здесь ты найдёшь расписание стримов,
-        Twitch, Telegram и возможность поддержать канал.
-    </p>
-
-    <div class="buttons">
-
-        <a id="heroTwitch"
-           class="btn primary"
-           target="_blank">
-            🔴 Twitch
-        </a>
-
-        <a id="heroTelegram"
-           class="btn"
-           target="_blank">
-            ✈️ Telegram
-        </a>
-
-        <a id="heroDonate"
-           class="btn"
-           target="_blank">
-            💰 Донат
-        </a>
-
-    </div>
-
-</section>
+        <div class="links">
+            <a href="#social">СОЦСЕТИ</a>
+            <a href="#schedule">РАСПИСАНИЕ</a>
+            <a href="#content">КОНТЕНТ</a>
+            <a href="#donate">ДОНАТ</a>
+            <button id="adminOpen" class="admin-carpet" title="Администратор" aria-label="Администратор">🧶</button>
+        </div>
+    </nav>
 
 
-<section>
+    <!-- ГЛАВНЫЙ ЭКРАН -->
 
-    <div class="title">
-        <h2>📅 Расписание стримов</h2>
-        <p>Актуальное расписание</p>
-    </div>
+    <header class="hero">
 
-    <div id="schedule" class="schedule"></div>
+        <div class="hero-content fade">
 
-</section>
+            <div class="tag">
+                🧶 ОФИЦИАЛЬНЫЙ САЙТ KAVROLIN
+            </div>
 
-
-<section>
-
-    <div class="title">
-        <h2>🔗 Ссылки</h2>
-        <p>Все основные ссылки</p>
-    </div>
-
-    <div class="links">
-
-        <a id="twitchCard"
-           class="link"
-           target="_blank">
-
-            <div class="link-icon">🔴</div>
-
-            <h3>Twitch</h3>
+            <h1>KAVROLIN</h1>
 
             <p>
-                Смотреть стримы
+                Twitch, TikTok, Telegram и весь наш движ —
+                теперь в одном месте.
+                Залетай в банду, следи за стримами
+                и не пропускай самое интересное.
             </p>
 
-        </a>
+            <div class="hero-buttons">
 
+                <a
+                    class="btn btn-gold"
+                    href="https://www.twitch.tv/kavrolindvizh"
+                    target="_blank">
+                    🎮 TWITCH
+                </a>
 
-        <a id="telegramCard"
-           class="link"
-           target="_blank">
+                <a
+                    class="btn"
+                    href="https://www.tiktok.com/"
+                    target="_blank">
+                    📱 TIKTOK
+                </a>
 
-            <div class="link-icon">✈️</div>
+                <a
+                    class="btn"
+                    href="https://t.me/Kavrolin_zbornik9"
+                    target="_blank">
+                    💬 TELEGRAM
+                </a>
 
-            <h3>Telegram</h3>
-
-            <p>
-                Новости и общение
-            </p>
-
-        </a>
-
-
-        <a id="donateCard"
-           class="link"
-           target="_blank">
-
-            <div class="link-icon">💰</div>
-
-            <h3>Поддержать</h3>
-
-            <p>
-                Отправить донат
-            </p>
-
-        </a>
-
-    </div>
-
-</section>
-
-</div>
-
-
-<footer>
-    © KAVROLIN DVIZH
-</footer>
-
-
-<!-- ========================= -->
-<!-- ОКНО ПАРОЛЯ -->
-<!-- ========================= -->
-
-<div class="modal" id="loginModal">
-
-    <div class="modal-box modal-small">
-
-        <div class="modal-head">
-
-            <h2>🔐 Администратор</h2>
-
-            <button class="close"
-                    data-close="loginModal">
-                ×
-            </button>
+            </div>
 
         </div>
 
-        <div id="loginMessage"
-             class="message">
+    </header>
+
+
+    <!-- СОЦСЕТИ -->
+
+    <section id="social">
+
+        <div class="section-title">
+            <span>Будь на связи</span>
+            <h2>Наши соцсети</h2>
         </div>
 
-        <div class="field">
+        <div class="social-grid">
 
-            <label>
-                Пароль
-            </label>
+            <a
+                class="social"
+                href="https://www.twitch.tv/kavrolindvizh"
+                target="_blank">
 
-            <input
-                id="password"
-                type="password"
-                placeholder="Введите пароль">
+                <div class="social-icon">🎮</div>
+
+                <h3>Twitch</h3>
+
+                <p>Основной движ и стримы</p>
+
+            </a>
+
+
+            <a
+                class="social"
+                href="https://www.tiktok.com/"
+                target="_blank">
+
+                <div class="social-icon">📱</div>
+
+                <h3>TikTok</h3>
+
+                <p>Моменты, приколы и клипы</p>
+
+            </a>
+
+
+            <a
+                class="social"
+                href="https://t.me/Kavrolin_zbornik9"
+                target="_blank">
+
+                <div class="social-icon">💬</div>
+
+                <h3>Telegram</h3>
+
+                <p>Жизнь банды и общение</p>
+
+            </a>
+
+
+            <a
+                class="social"
+                href="https://donatello.to/KavrolinDvizh?utm_source=chatgpt.com"
+                target="_blank">
+
+                <div class="social-icon">💰</div>
+
+                <h3>Donatello</h3>
+
+                <p>Поддержать KAVROLIN</p>
+
+            </a>
 
         </div>
 
-        <button
-            id="login"
-            class="btn primary"
-            style="width:100%">
-
-            Войти
-
-        </button>
-
-    </div>
-
-</div>
+    </section>
 
 
-<!-- ========================= -->
-<!-- АДМИНКА -->
-<!-- ========================= -->
+    <!-- РАСПИСАНИЕ -->
 
-<div class="modal" id="adminModal">
+    <section id="schedule">
 
-    <div class="modal-box">
+        <div class="section-title">
+            <span>Не пропускай</span>
+            <h2>Расписание стримов</h2>
+        </div>
 
-        <div class="modal-head">
 
-            <div>
-                <h2>⚙️ Админ-панель</h2>
+        <div class="schedule" id="scheduleList"></div>
 
-                <p style="color:#888">
-                    Изменения сохраняются на сервере.
+            <div class="day">
+                <strong>ВТОРНИК</strong>
+                <span>19:00 — 23:00</span>
+            </div>
+
+            <div class="day">
+                <strong>СРЕДА</strong>
+                <span>ВЫХОДНОЙ</span>
+            </div>
+
+            <div class="day">
+                <strong>ЧЕТВЕРГ</strong>
+                <span>19:00 — 23:00</span>
+            </div>
+
+            <div class="day">
+                <strong>ПЯТНИЦА</strong>
+                <span>20:00 — 00:00</span>
+            </div>
+
+            <div class="day">
+                <strong>СУББОТА</strong>
+                <span>20:00 — 00:00</span>
+            </div>
+
+            <div class="day">
+                <strong>ВОСКРЕСЕНЬЕ</strong>
+                <span>ВЫХОДНОЙ</span>
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- КОНТЕНТ -->
+
+    <section id="content">
+
+        <div class="section-title">
+            <span>Что здесь происходит</span>
+            <h2>Контент</h2>
+        </div>
+
+
+        <div class="cards">
+
+            <div class="card">
+                <h3>🎮 Стримы</h3>
+
+                <p>
+                    Игры, общение, приколы и полный
+                    непредсказуемый движ в прямом эфире.
                 </p>
             </div>
 
-            <button class="close"
-                    data-close="adminModal">
-                ×
-            </button>
+
+            <div class="card">
+                <h3>😂 TikTok</h3>
+
+                <p>
+                    Лучшие моменты со стримов,
+                    угарные ситуации и короткие видео.
+                </p>
+            </div>
+
+
+            <div class="card">
+                <h3>🧶 Telegram</h3>
+
+                <p>
+                    Закулисье, новости, расписание,
+                    общение с бандой и эксклюзив,
+                    который не появляется в других соцсетях.
+                </p>
+            </div>
 
         </div>
 
-
-        <div id="adminMessage"
-             class="message">
-        </div>
+    </section>
 
 
-        <h3>🔗 Ссылки</h3>
+    <!-- DONATE -->
 
+    <section id="donate">
 
-        <div class="field">
+        <div class="donate">
 
-            <label>
-                Telegram
-            </label>
+            <h2>💰 Поддержать KAVROLIN</h2>
 
-            <input
-                id="telegram"
-                type="url">
+            <p>
+                Если нравится движ — можешь поддержать канал.
+                Каждый донат помогает делать стримы лучше.
+            </p>
 
-        </div>
+            <!--
+                ЗАМЕНИ ССЫЛКУ НИЖЕ НА СВОЮ СТРАНИЦУ DONATELLO
+            -->
 
+            <a
+                class="btn btn-gold"
+                href="https://donatello.to/KavrolinDvizh?utm_source=chatgpt.com"
+                target="_blank">
 
-        <div class="field">
+                🧶 ЗАДОНАТИТЬ
 
-            <label>
-                Twitch
-            </label>
-
-            <input
-                id="twitch"
-                type="url">
+            </a>
 
         </div>
 
+    </section>
 
-        <div class="field">
 
-            <label>
-                Donatello
-            </label>
+    <!-- FOOTER -->
 
-            <input
-                id="donate"
-                type="url">
+    <footer>
 
+        <p>
+            © 2026 <b>KAVROLIN</b> ·
+            Все права защищены
+        </p>
+
+        <p style="margin-top: 8px;">
+            🧶 Ковёр постелен. Движ продолжается.
+        </p>
+
+    </footer>
+
+
+
+    <!-- =========================
+         АДМИНКА
+    ========================== -->
+
+    <div class="admin-modal" id="loginModal">
+        <div class="admin-box" style="max-width:430px;">
+            <div class="admin-head">
+                <div>
+                    <h2>🔐 Администратор</h2>
+                    <p>Введите пароль для редактирования сайта.</p>
+                </div>
+                <button class="admin-close" data-close="loginModal">×</button>
+            </div>
+
+            <div id="loginMessage" class="admin-message"></div>
+
+            <div class="admin-field">
+                <label>Пароль</label>
+                <input id="adminPassword" type="password" autocomplete="current-password" placeholder="Введите пароль">
+            </div>
+
+            <div class="admin-actions">
+                <button id="loginButton" class="btn btn-gold">ВОЙТИ</button>
+                <button class="btn" data-close="loginModal">ОТМЕНА</button>
+            </div>
         </div>
-
-
-        <h3 style="margin-top:30px">
-            📅 Расписание
-        </h3>
-
-
-        <div id="scheduleEditor"></div>
-
-
-        <button
-            id="addStream"
-            class="btn"
-            style="margin-top:10px">
-
-            ＋ Добавить стрим
-
-        </button>
-
-
-        <div class="admin-buttons">
-
-            <button
-                id="save"
-                class="btn primary">
-
-                💾 Сохранить
-
-            </button>
-
-            <button
-                id="reload"
-                class="btn">
-
-                ↻ Обновить
-
-            </button>
-
-            <button
-                class="btn"
-                data-close="adminModal">
-
-                Закрыть
-
-            </button>
-
-        </div>
-
     </div>
 
-</div>
-
-
-<script>
-
-/* ==========================================
-   SUPABASE
-========================================== */
-
-const SUPABASE_URL =
-"https://hunrylaileqzutkkvmnx.supabase.co";
-
-const SUPABASE_KEY =
-"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imh1bnJ5bGFpbGVxenV0a2t2bW54Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODcwNjI5NjgsImV4cCI6MjEwMjYzODk2OH0.jlDkkjmBPeefO1n8aW_HC8wHy8_nM-gZEzEZCG9xVs0";
-
-
-/* ==========================================
-   СТАНДАРТНЫЕ ДАННЫЕ
-========================================== */
-
-const DEFAULTS = {
-
-    telegram_url:
-    "https://t.me/Kavrolin_zbornik9",
-
-    twitch_url:
-    "https://www.twitch.tv/kavrolindvizh",
-
-    donate_url:
-    "https://donatello.to/KavrolinDvizh?utm_source=chatgpt.com",
-
-    schedule:[
-        {
-            day:"ПОНЕДЕЛЬНИК",
-            time:"18:00",
-            title:"Стрим",
-            active:true
-        },
-        {
-            day:"СРЕДА",
-            time:"18:00",
-            title:"Стрим",
-            active:true
-        },
-        {
-            day:"ПЯТНИЦА",
-            time:"18:00",
-            title:"Стрим",
-            active:true
-        }
-    ]
-
-};
-
-
-/* Пароль хранится НЕ здесь.
-   Проверка происходит в Supabase. */
-
-let settings = null;
-
-let adminPassword = "";
-
-
-/* ==========================================
-   SUPABASE RPC
-========================================== */
-
-async function rpc(functionName,data){
-
-    const response =
-        await fetch(
-            SUPABASE_URL +
-            "/rest/v1/rpc/" +
-            functionName,
-            {
-                method:"POST",
-
-                headers:{
-                    "Content-Type":"application/json",
-                    "apikey":SUPABASE_KEY,
-                    "Authorization":
-                        "Bearer " + SUPABASE_KEY
-                },
-
-                body:JSON.stringify(data || {})
-            }
-        );
-
-    const text =
-        await response.text();
-
-    let result;
-
-    try{
-        result =
-            text ?
-            JSON.parse(text) :
-            null;
-    }
-    catch{
-        result = null;
-    }
-
-    if(!response.ok){
-
-        throw new Error(
-            result?.message ||
-            result?.hint ||
-            text ||
-            "Ошибка Supabase"
-        );
-
-    }
-
-    return result;
-}
-
-
-/* ==========================================
-   ЭКРАНИРОВАНИЕ
-========================================== */
-
-function escapeHTML(value){
-
-    return String(value ?? "")
-        .replaceAll("&","&amp;")
-        .replaceAll("<","&lt;")
-        .replaceAll(">","&gt;")
-        .replaceAll('"',"&quot;")
-        .replaceAll("'","&#039;");
-
-}
-
-
-/* ==========================================
-   ССЫЛКИ
-========================================== */
-
-function updateLinks(data){
-
-    const twitch =
-        data.twitch_url ||
-        DEFAULTS.twitch_url;
-
-    const telegram =
-        data.telegram_url ||
-        DEFAULTS.telegram_url;
-
-    const donate =
-        data.donate_url ||
-        DEFAULTS.donate_url;
-
-
-    document.getElementById("heroTwitch").href =
-        twitch;
-
-    document.getElementById("twitchCard").href =
-        twitch;
-
-
-    document.getElementById("heroTelegram").href =
-        telegram;
-
-    document.getElementById("telegramCard").href =
-        telegram;
-
-
-    document.getElementById("heroDonate").href =
-        donate;
-
-    document.getElementById("donateCard").href =
-        donate;
-
-}
-
-
-/* ==========================================
-   РАСПИСАНИЕ
-========================================== */
-
-function renderSchedule(schedule){
-
-    const container =
-        document.getElementById("schedule");
-
-
-    const list =
-        Array.isArray(schedule)
-        ? schedule.filter(
-            item =>
-            item &&
-            item.active !== false
-        )
-        : [];
-
-
-    if(!list.length){
-
-        container.innerHTML =
-            `
-            <div style="
-                grid-column:1/-1;
-                text-align:center;
-                color:#888;
-                padding:30px;
-            ">
-                Расписание пока пустое.
-            </div>
-            `;
-
-        return;
-    }
-
-
-    container.innerHTML =
-        list.map(item => `
-
-            <div class="stream">
-
-                <div class="stream-day">
-                    ${escapeHTML(item.day)}
+    <div class="admin-modal" id="adminModal">
+        <div class="admin-box">
+            <div class="admin-head">
+                <div>
+                    <h2>⚙️ Редактирование сайта</h2>
+                    <p>Изменения сохраняются в Supabase и становятся видны всем посетителям.</p>
                 </div>
-
-                <div class="stream-time">
-                    ${escapeHTML(item.time)}
-                </div>
-
-                <div class="stream-title">
-                    ${escapeHTML(item.title)}
-                </div>
-
+                <button class="admin-close" data-close="adminModal">×</button>
             </div>
 
-        `).join("");
+            <div id="adminMessage" class="admin-message"></div>
 
-}
+            <h3>🔗 Ссылки</h3>
 
+            <div class="admin-field">
+                <label>Telegram</label>
+                <input id="telegramInput" type="url">
+            </div>
 
-/* ==========================================
-   ЗАГРУЗКА САЙТА
-========================================== */
+            <div class="admin-field">
+                <label>Twitch</label>
+                <input id="twitchInput" type="url">
+            </div>
 
-async function loadSite(){
+            <div class="admin-field">
+                <label>Donatello</label>
+                <input id="donateInput" type="url">
+            </div>
 
-    try{
+            <h3>📅 Расписание</h3>
+            <div id="scheduleEditor"></div>
 
-        const data =
-            await rpc(
-                "get_site_settings"
-            );
+            <button id="addStream" class="btn">＋ ДОБАВИТЬ СТРИМ</button>
 
+            <div class="admin-actions">
+                <button id="saveSettings" class="btn btn-gold">💾 СОХРАНИТЬ</button>
+                <button id="reloadSettings" class="btn">↻ ОБНОВИТЬ</button>
+                <button class="btn" data-close="adminModal">ЗАКРЫТЬ</button>
+            </div>
+        </div>
+    </div>
 
-        settings = {
-            ...DEFAULTS,
-            ...(data || {})
+    <!-- JAVASCRIPT -->
+    <script>
+        /*
+         * SUPABASE
+         */
+        const SUPABASE_URL = "https://hunrylaileqzutkkvmnx.supabase.co";
+        const SUPABASE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imh1bnJ5bGFpbGVxenV0a2t2bW54Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODcwNjI5NjgsImV4cCI6MjEwMjYzODk2OH0.jlDkkjmBPeefO1n8aW_HC8wHy8_nM-gZEzEZCG9xVs0";
+
+        const DEFAULTS = {
+            telegram_url: "https://t.me/Kavrolin_zbornik9",
+            twitch_url: "https://www.twitch.tv/kavrolindvizh",
+            donate_url: "https://donatello.to/KavrolinDvizh?utm_source=chatgpt.com",
+            schedule: [
+                {day:"ПОНЕДЕЛЬНИК", time:"19:00 — 23:00", title:"Стрим", active:true},
+                {day:"ВТОРНИК", time:"19:00 — 23:00", title:"Стрим", active:true},
+                {day:"СРЕДА", time:"ВЫХОДНОЙ", title:"", active:true},
+                {day:"ЧЕТВЕРГ", time:"19:00 — 23:00", title:"Стрим", active:true},
+                {day:"ПЯТНИЦА", time:"20:00 — 00:00", title:"Стрим", active:true},
+                {day:"СУББОТА", time:"20:00 — 00:00", title:"Стрим", active:true},
+                {day:"ВОСКРЕСЕНЬЕ", time:"ВЫХОДНОЙ", title:"", active:true}
+            ]
         };
 
+        let settings = null;
+        let adminPassword = "";
 
-        if(!Array.isArray(settings.schedule)){
-
-            settings.schedule =
-                DEFAULTS.schedule;
-
-        }
-
-    }
-    catch(error){
-
-        console.error(error);
-
-        settings =
-            JSON.parse(
-                JSON.stringify(DEFAULTS)
+        async function rpc(functionName, data) {
+            const response = await fetch(
+                SUPABASE_URL + "/rest/v1/rpc/" + functionName,
+                {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                        "apikey": SUPABASE_KEY,
+                        "Authorization": "Bearer " + SUPABASE_KEY
+                    },
+                    body: JSON.stringify(data || {})
+                }
             );
 
-    }
+            const text = await response.text();
+            let result = null;
 
+            try {
+                result = text ? JSON.parse(text) : null;
+            } catch (e) {}
 
-    updateLinks(settings);
-
-    renderSchedule(
-        settings.schedule
-    );
-
-}
-
-
-/* ==========================================
-   ОКНА
-========================================== */
-
-function openModal(id){
-
-    document
-        .getElementById(id)
-        .classList.add("active");
-
-}
-
-
-function closeModal(id){
-
-    document
-        .getElementById(id)
-        .classList.remove("active");
-
-}
-
-
-document
-    .querySelectorAll("[data-close]")
-    .forEach(button => {
-
-        button.addEventListener(
-            "click",
-            () => {
-
-                closeModal(
-                    button.dataset.close
+            if (!response.ok) {
+                throw new Error(
+                    result?.message ||
+                    result?.hint ||
+                    text ||
+                    ("HTTP " + response.status)
                 );
-
-            }
-        );
-
-    });
-
-
-/* ==========================================
-   КНОПКА КОВРА
-========================================== */
-
-document
-    .getElementById("adminOpen")
-    .addEventListener("click",()=>{
-
-        document
-            .getElementById("password")
-            .value="";
-
-        document
-            .getElementById("loginMessage")
-            .className="message";
-
-        openModal("loginModal");
-
-        setTimeout(
-            () =>
-            document
-                .getElementById("password")
-                .focus(),
-            100
-        );
-
-    });
-
-
-/* ==========================================
-   СООБЩЕНИЕ
-========================================== */
-
-function message(id,text,type){
-
-    const element =
-        document.getElementById(id);
-
-    element.className =
-        "message show " + type;
-
-    element.textContent =
-        text;
-
-}
-
-
-/* ==========================================
-   ВХОД
-========================================== */
-
-document
-    .getElementById("login")
-    .addEventListener("click",async()=>{
-
-        const password =
-            document
-                .getElementById("password")
-                .value
-                .trim();
-
-
-        if(!password){
-
-            message(
-                "loginMessage",
-                "Введите пароль.",
-                "error"
-            );
-
-            return;
-
-        }
-
-
-        const button =
-            document.getElementById("login");
-
-        button.disabled=true;
-
-        button.textContent=
-            "Проверка...";
-
-
-        try{
-
-            /*
-             Проверяем пароль через
-             серверную функцию.
-
-             Никакой проверки
-             пароля в HTML нет.
-            */
-
-            const data =
-                await rpc(
-                    "update_site_settings",
-                    {
-
-                        p_password:
-                            password,
-
-                        p_telegram_url:
-                            settings.telegram_url,
-
-                        p_twitch_url:
-                            settings.twitch_url,
-
-                        p_donate_url:
-                            settings.donate_url,
-
-                        p_schedule:
-                            settings.schedule
-
-                    }
-                );
-
-
-            adminPassword =
-                password;
-
-
-            settings = {
-                ...DEFAULTS,
-                ...(data || settings)
-            };
-
-
-            closeModal("loginModal");
-
-            openAdmin();
-
-        }
-        catch(error){
-
-            console.error(error);
-
-            message(
-                "loginMessage",
-                "Неверный пароль.",
-                "error"
-            );
-
-        }
-        finally{
-
-            button.disabled=false;
-
-            button.textContent=
-                "Войти";
-
-        }
-
-    });
-
-
-/* Enter в поле пароля */
-
-document
-    .getElementById("password")
-    .addEventListener(
-        "keydown",
-        event => {
-
-            if(event.key==="Enter"){
-
-                document
-                    .getElementById("login")
-                    .click();
-
             }
 
+            return result;
         }
-    );
 
+        function escapeHTML(value) {
+            return String(value ?? "")
+                .replaceAll("&","&amp;")
+                .replaceAll("<","&lt;")
+                .replaceAll(">","&gt;")
+                .replaceAll('"',"&quot;")
+                .replaceAll("'","&#039;");
+        }
 
-/* ==========================================
-   ОТКРЫТИЕ АДМИНКИ
-========================================== */
+        function setLink(id, url) {
+            const element = document.getElementById(id);
+            if (element) element.href = url;
+        }
 
-function openAdmin(){
+        function updateLinks(data) {
+            const twitch = data.twitch_url || DEFAULTS.twitch_url;
+            const telegram = data.telegram_url || DEFAULTS.telegram_url;
+            const donate = data.donate_url || DEFAULTS.donate_url;
 
-    document
-        .getElementById("telegram")
-        .value =
-        settings.telegram_url || "";
-
-
-    document
-        .getElementById("twitch")
-        .value =
-        settings.twitch_url || "";
-
-
-    document
-        .getElementById("donate")
-        .value =
-        settings.donate_url || "";
-
-
-    renderEditor(
-        settings.schedule || []
-    );
-
-
-    document
-        .getElementById("adminMessage")
-        .className="message";
-
-
-    openModal("adminModal");
-
-}
-
-
-/* ==========================================
-   РЕДАКТОР РАСПИСАНИЯ
-========================================== */
-
-function renderEditor(schedule){
-
-    const editor =
-        document
-            .getElementById(
-                "scheduleEditor"
+            const twitchLinks = document.querySelectorAll(
+                'a[href*="twitch.tv"]'
             );
+            twitchLinks.forEach(a => a.href = twitch);
 
-
-    editor.innerHTML="";
-
-
-    schedule.forEach(item => {
-
-        addRow(item);
-
-    });
-
-}
-
-
-function addRow(item={}){
-
-    const editor =
-        document
-            .getElementById(
-                "scheduleEditor"
+            const telegramLinks = document.querySelectorAll(
+                'a[href*="t.me"]'
             );
+            telegramLinks.forEach(a => a.href = telegram);
 
+            const donateLinks = document.querySelectorAll(
+                'a[href*="donatello.to"]'
+            );
+            donateLinks.forEach(a => a.href = donate);
+        }
 
-    const row =
-        document.createElement("div");
+        function renderSchedule(schedule) {
+            const container = document.getElementById("scheduleList");
+            if (!container) return;
 
+            const list = Array.isArray(schedule) ? schedule : [];
 
-    row.className="admin-row";
-
-
-    row.innerHTML=`
-
-        <input
-            class="day"
-            placeholder="ДЕНЬ"
-            value="${escapeHTML(item.day || "")}"
-        >
-
-        <input
-            class="time"
-            type="time"
-            value="${escapeHTML(item.time || "")}"
-        >
-
-        <input
-            class="streamTitle"
-            placeholder="Название стрима"
-            value="${escapeHTML(item.title || "")}"
-        >
-
-        <button
-            class="delete"
-            type="button">
-            Удалить
-        </button>
-
-    `;
-
-
-    row
-        .querySelector(".delete")
-        .addEventListener(
-            "click",
-            () => row.remove()
-        );
-
-
-    editor.appendChild(row);
-
-}
-
-
-/* Добавить стрим */
-
-document
-    .getElementById("addStream")
-    .addEventListener(
-        "click",
-        () => addRow()
-    );
-
-
-/* ==========================================
-   СОБРАТЬ РАСПИСАНИЕ
-========================================== */
-
-function getSchedule(){
-
-    return [
-        ...document
-            .querySelectorAll(
-                "#scheduleEditor .admin-row"
-            )
-    ]
-    .map(row => {
-
-        return {
-
-            day:
-                row
-                    .querySelector(".day")
-                    .value
-                    .trim(),
-
-            time:
-                row
-                    .querySelector(".time")
-                    .value,
-
-            title:
-                row
-                    .querySelector(".streamTitle")
-                    .value
-                    .trim(),
-
-            active:true
-
-        };
-
-    })
-    .filter(item =>
-        item.day ||
-        item.time ||
-        item.title
-    );
-
-}
-
-
-/* ==========================================
-   СОХРАНЕНИЕ
-========================================== */
-
-document
-    .getElementById("save")
-    .addEventListener(
-        "click",
-        async()=>{
-
-            const button =
-                document.getElementById(
-                    "save"
-                );
-
-
-            const telegram =
-                document
-                    .getElementById(
-                        "telegram"
-                    )
-                    .value
-                    .trim();
-
-
-            const twitch =
-                document
-                    .getElementById(
-                        "twitch"
-                    )
-                    .value
-                    .trim();
-
-
-            const donate =
-                document
-                    .getElementById(
-                        "donate"
-                    )
-                    .value
-                    .trim();
-
-
-            const schedule =
-                getSchedule();
-
-
-            if(
-                !telegram ||
-                !twitch ||
-                !donate
-            ){
-
-                message(
-                    "adminMessage",
-                    "Заполни все три ссылки.",
-                    "error"
-                );
-
+            if (!list.length) {
+                container.innerHTML =
+                    '<div class="day"><strong>РАСПИСАНИЕ</strong><span>Пока пусто</span></div>';
                 return;
-
             }
 
+            container.innerHTML = list.map(item => {
+                const day = escapeHTML(item.day || "СТРИМ");
+                const time = escapeHTML(item.time || "");
+                const title = escapeHTML(item.title || "");
 
-            button.disabled=true;
+                return `
+                    <div class="day">
+                        <strong>${day}${title ? " — " + title : ""}</strong>
+                        <span>${time}</span>
+                    </div>
+                `;
+            }).join("");
+        }
 
-            button.textContent=
-                "Сохранение...";
-
-
-            try{
-
-                const data =
-                    await rpc(
-                        "update_site_settings",
-                        {
-
-                            p_password:
-                                adminPassword,
-
-                            p_telegram_url:
-                                telegram,
-
-                            p_twitch_url:
-                                twitch,
-
-                            p_donate_url:
-                                donate,
-
-                            p_schedule:
-                                schedule
-
-                        }
-                    );
-
+        async function loadSettings() {
+            try {
+                const data = await rpc("get_site_settings");
 
                 settings = {
                     ...DEFAULTS,
                     ...(data || {})
                 };
 
+                if (!Array.isArray(settings.schedule)) {
+                    settings.schedule = DEFAULTS.schedule;
+                }
+            } catch (error) {
+                console.error("Supabase:", error);
 
-                updateLinks(settings);
-
-                renderSchedule(
-                    settings.schedule
+                settings = JSON.parse(
+                    JSON.stringify(DEFAULTS)
                 );
-
-
-                message(
-                    "adminMessage",
-                    "✅ Сохранено! Теперь изменения видят все посетители сайта.",
-                    "success"
-                );
-
-
             }
-            catch(error){
 
-                console.error(error);
+            updateLinks(settings);
+            renderSchedule(settings.schedule);
+        }
 
-                message(
-                    "adminMessage",
-                    "❌ Ошибка сохранения. Возможно, пароль неверный.",
+        function openModal(id) {
+            document.getElementById(id).classList.add("active");
+        }
+
+        function closeModal(id) {
+            document.getElementById(id).classList.remove("active");
+        }
+
+        function showMessage(id, text, type) {
+            const element = document.getElementById(id);
+            element.className = "admin-message show " + type;
+            element.textContent = text;
+        }
+
+        document.querySelectorAll("[data-close]").forEach(button => {
+            button.addEventListener("click", () => {
+                closeModal(button.dataset.close);
+            });
+        });
+
+        document.querySelectorAll(".admin-modal").forEach(modal => {
+            modal.addEventListener("click", event => {
+                if (event.target === modal) {
+                    modal.classList.remove("active");
+                }
+            });
+        });
+
+        document.getElementById("adminOpen").addEventListener("click", () => {
+            document.getElementById("adminPassword").value = "";
+            document.getElementById("loginMessage").className = "admin-message";
+            openModal("loginModal");
+
+            setTimeout(() => {
+                document.getElementById("adminPassword").focus();
+            }, 100);
+        });
+
+        async function login() {
+            const password =
+                document.getElementById("adminPassword").value.trim();
+
+            if (!password) {
+                showMessage(
+                    "loginMessage",
+                    "Введите пароль.",
                     "error"
                 );
-
-            }
-            finally{
-
-                button.disabled=false;
-
-                button.textContent=
-                    "💾 Сохранить";
-
+                return;
             }
 
+            const button = document.getElementById("loginButton");
+            button.disabled = true;
+            button.textContent = "ПРОВЕРКА...";
+
+            try {
+                /*
+                 * Пароль проверяется функцией Supabase.
+                 * В HTML правильный пароль не сравнивается.
+                 */
+                const result = await rpc(
+                    "update_site_settings",
+                    {
+                        p_password: password,
+                        p_telegram_url:
+                            settings.telegram_url,
+                        p_twitch_url:
+                            settings.twitch_url,
+                        p_donate_url:
+                            settings.donate_url,
+                        p_schedule:
+                            settings.schedule
+                    }
+                );
+
+                adminPassword = password;
+
+                settings = {
+                    ...DEFAULTS,
+                    ...(result || settings)
+                };
+
+                closeModal("loginModal");
+                openAdmin();
+
+            } catch (error) {
+                console.error(error);
+
+                showMessage(
+                    "loginMessage",
+                    "Неверный пароль или ошибка соединения с Supabase.",
+                    "error"
+                );
+            } finally {
+                button.disabled = false;
+                button.textContent = "ВОЙТИ";
+            }
         }
-    );
 
+        document.getElementById("loginButton")
+            .addEventListener("click", login);
 
-/* ==========================================
-   ПЕРЕЗАГРУЗКА ДАННЫХ
-========================================== */
+        document.getElementById("adminPassword")
+            .addEventListener("keydown", event => {
+                if (event.key === "Enter") {
+                    login();
+                }
+            });
 
-document
-    .getElementById("reload")
-    .addEventListener(
-        "click",
-        async()=>{
+        function openAdmin() {
+            document.getElementById("telegramInput").value =
+                settings.telegram_url || "";
 
-            await loadSite();
+            document.getElementById("twitchInput").value =
+                settings.twitch_url || "";
 
-            openAdmin();
+            document.getElementById("donateInput").value =
+                settings.donate_url || "";
 
-            message(
-                "adminMessage",
-                "Данные загружены с сервера.",
-                "success"
+            renderEditor(settings.schedule || []);
+
+            document.getElementById("adminMessage").className =
+                "admin-message";
+
+            openModal("adminModal");
+        }
+
+        function addEditorRow(item = {}) {
+            const editor =
+                document.getElementById("scheduleEditor");
+
+            const row =
+                document.createElement("div");
+
+            row.className = "admin-stream-row";
+
+            row.innerHTML = `
+                <input
+                    class="admin-day"
+                    placeholder="ДЕНЬ"
+                    value="${escapeHTML(item.day || "")}">
+
+                <input
+                    class="admin-time"
+                    placeholder="19:00 — 23:00"
+                    value="${escapeHTML(item.time || "")}">
+
+                <input
+                    class="admin-title"
+                    placeholder="Название стрима"
+                    value="${escapeHTML(item.title || "")}">
+
+                <button
+                    type="button"
+                    class="admin-delete">
+                    УДАЛИТЬ
+                </button>
+            `;
+
+            row.querySelector(".admin-delete")
+                .addEventListener("click", () => row.remove());
+
+            editor.appendChild(row);
+        }
+
+        function renderEditor(schedule) {
+            const editor =
+                document.getElementById("scheduleEditor");
+
+            editor.innerHTML = "";
+
+            (Array.isArray(schedule) ? schedule : [])
+                .forEach(item => addEditorRow(item));
+        }
+
+        document.getElementById("addStream")
+            .addEventListener("click", () => addEditorRow());
+
+        function collectSchedule() {
+            return [
+                ...document.querySelectorAll(
+                    "#scheduleEditor .admin-stream-row"
+                )
+            ].map(row => ({
+                day: row.querySelector(".admin-day").value.trim(),
+                time: row.querySelector(".admin-time").value.trim(),
+                title: row.querySelector(".admin-title").value.trim(),
+                active: true
+            })).filter(item =>
+                item.day || item.time || item.title
             );
-
         }
-    );
+
+        document.getElementById("saveSettings")
+            .addEventListener("click", async () => {
+                const button =
+                    document.getElementById("saveSettings");
+
+                const telegram =
+                    document.getElementById("telegramInput")
+                        .value.trim();
+
+                const twitch =
+                    document.getElementById("twitchInput")
+                        .value.trim();
+
+                const donate =
+                    document.getElementById("donateInput")
+                        .value.trim();
+
+                const schedule =
+                    collectSchedule();
+
+                if (!telegram || !twitch || !donate) {
+                    showMessage(
+                        "adminMessage",
+                        "Заполни все три ссылки.",
+                        "error"
+                    );
+                    return;
+                }
+
+                button.disabled = true;
+                button.textContent = "СОХРАНЕНИЕ...";
+
+                try {
+                    const result = await rpc(
+                        "update_site_settings",
+                        {
+                            p_password: adminPassword,
+                            p_telegram_url: telegram,
+                            p_twitch_url: twitch,
+                            p_donate_url: donate,
+                            p_schedule: schedule
+                        }
+                    );
+
+                    settings = {
+                        ...DEFAULTS,
+                        ...(result || {})
+                    };
+
+                    updateLinks(settings);
+                    renderSchedule(settings.schedule);
+
+                    showMessage(
+                        "adminMessage",
+                        "✅ Сохранено! Данные находятся в Supabase и доступны всем посетителям.",
+                        "success"
+                    );
+
+                } catch (error) {
+                    console.error(error);
+
+                    showMessage(
+                        "adminMessage",
+                        "❌ Не удалось сохранить данные.",
+                        "error"
+                    );
+                } finally {
+                    button.disabled = false;
+                    button.textContent = "💾 СОХРАНИТЬ";
+                }
+            });
+
+        document.getElementById("reloadSettings")
+            .addEventListener("click", async () => {
+                await loadSettings();
+                openAdmin();
+
+                showMessage(
+                    "adminMessage",
+                    "Данные загружены заново из Supabase.",
+                    "success"
+                );
+            });
 
 
-/* ==========================================
-   ЗАПУСК
-========================================== */
+        /* Старую анимацию сайта оставляем */
+        const elements = document.querySelectorAll(
+            '.social, .card, .day, .donate'
+        );
 
-loadSite();
+        const observer = new IntersectionObserver(
+            (entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = "1";
+                        entry.target.style.transform = "translateY(0)";
+                    }
+                });
+            },
+            {
+                threshold: 0.12
+            }
+        );
 
-</script>
+        elements.forEach(element => {
+            element.style.opacity = "0";
+            element.style.transform = "translateY(25px)";
+            element.style.transition = "all .6s ease";
+            observer.observe(element);
+        });
+
+
+        /* Загрузка настроек */
+        loadSettings();
+
+    </script>
 
 </body>
 </html>
